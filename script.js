@@ -3,6 +3,21 @@ const translations={
   zh:{'nav.about':'关于','nav.index':'目录','nav.work':'作品','nav.contact':'联系','hero.eyebrow':'书法 / 艺术指导','hero.manifesto':'我把寂静画成流动。','hero.cta':'进入作品档案','hero.caption':'工作室信号 / 2026','about.eyebrow':'关于创作','about.title':'手，是一件<br /><em>思考的乐器。</em>','about.body':'Raven Hsieh 是一位独立书法艺术家，在书写的秩序与身体的自由之间工作。她把语言变成一种氛围：亲密、触感鲜明，又略微偏离中心。','about.cta':'更多关于 Raven','index.title':'一份正在生长的<br /><em>目录。</em>','index.body':'关于笔触、委托，以及仍在成为的事物。','index.one':'作品','index.two':'合作','index.three':'来自工作室的信','work.title':'带着<br /><em>记忆的笔迹。</em>','services.title':'留下<br /><em>一点痕迹。</em>','services.body':'为希望语言拥有材质感的人而作。接受精选委托、文化项目与编辑类创作。','services.cta':'开始交流 <span>↗</span>'},
   ja:{'nav.about':'紹介','nav.index':'目次','nav.work':'作品','nav.contact':'連絡','hero.eyebrow':'書 / アートディレクション','hero.manifesto':'静けさを、動きに描く。','hero.cta':'アーカイブへ','hero.caption':'studio signal / 2026','about.eyebrow':'創作について','about.title':'手は、<br /><em>考える楽器。</em>','about.body':'Raven Hsieh は、書かれた線の規律と動く身体の自由の間で活動する独立書家です。言葉を空気へ変える。親密で、触覚的で、少し中心からずれたものへ。','about.cta':'Raven について','index.title':'生きている<br /><em>目次。</em>','index.body':'線、依頼、そしてまだ形になっていないもののための分類。','index.one':'作品','index.two':'コラボレーション','index.three':'スタジオからの手紙','work.title':'記憶を宿す<br /><em>線。</em>','services.title':'痕跡を<br /><em>残すために。</em>','services.body':'言葉を素材として感じたい人へ。選ばれた依頼、文化プロジェクト、エディトリアルの世界のために。','services.cta':'話をはじめる <span>↗</span>'}
 };
+Object.assign(translations.en,{
+  'services.item1.title':'Brand identity','services.item1.body':'Wordmarks, logotypes, and a visual voice with a human pulse.',
+  'services.item2.title':'Editorial lettering','services.item2.body':'Cover art, title treatments, and letters that hold the page.',
+  'services.item3.title':'Live / digital','services.item3.body':'Motion studies, installations, and responsive gestures for screens.'
+});
+Object.assign(translations.zh,{
+  'services.item1.title':'品牌视觉','services.item1.body':'标志、字标，以及带着温度和呼吸感的视觉语言。',
+  'services.item2.title':'编辑书写','services.item2.body':'封面艺术、标题设计，以及能留在纸页里的字。',
+  'services.item3.title':'现场 / 数字','services.item3.body':'动态笔触、空间装置，与为屏幕而生的互动姿态。'
+});
+Object.assign(translations.ja,{
+  'services.item1.title':'ブランド・アイデンティティ','services.item1.body':'ワードマーク、ロゴタイプ、そして人の温度を持つ視覚の声。',
+  'services.item2.title':'エディトリアル・レタリング','services.item2.body':'カバーアート、タイトル処理、ページに残る文字。',
+  'services.item3.title':'ライブ / デジタル','services.item3.body':'モーションスタディ、インスタレーション、画面のための反応する身振り。'
+});
 document.querySelectorAll('.language').forEach(btn=>btn.addEventListener('click',()=>{const lang=btn.dataset.lang;document.documentElement.lang=lang==='zh'?'zh-CN':lang;document.querySelectorAll('.language').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(translations[lang][key])el.innerHTML=translations[lang][key]})}));
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 const panels=[...document.querySelectorAll('main > section, footer')];panels.forEach(panel=>panel.classList.add('scroll-panel'));const panelObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting&&entry.intersectionRatio>.24){panels.forEach(panel=>panel.classList.toggle('is-current',panel===entry.target));const rail=document.querySelector('.scroll-rail i');if(rail)rail.style.transform=`translateY(${Math.max(0,panels.indexOf(entry.target)/(panels.length-1)*72)}px)`}}),{threshold:[.24,.48,.7]});panels.forEach(panel=>panelObserver.observe(panel));
